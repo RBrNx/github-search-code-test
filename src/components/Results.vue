@@ -1,8 +1,12 @@
 <template>
 	<div id="Results">
         <div class="flex">
-            <repository-result></repository-result>
-            <repository-result></repository-result>
+            <repository-result
+                v-for="(repo, index) in searchResults"
+                :key="repo.id"
+                :repoInformation="repo"
+                :data-index="index"
+            ></repository-result>
         </div>
 	</div>
 </template>
@@ -22,7 +26,9 @@ export default {
 
     },
     watch: {
-
+        results: function(res){
+            this.searchResults = res;
+        }
     },
 	data(){
 		return {

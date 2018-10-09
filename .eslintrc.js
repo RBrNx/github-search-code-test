@@ -38,5 +38,6 @@ module.exports = {
     "no-trailing-spaces": 0,
     "no-multiple-empty-lines": 0,
     "space-infix-ops": 0,
+    "keyword-spacing": 0,
   }
 }

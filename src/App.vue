@@ -1,7 +1,7 @@
 <template>
   	<div id="app">
 		  <heading></heading>
-		  <results></results>
+		  <results :results="repos"></results>
   	</div>
 </template>
 
@@ -14,6 +14,31 @@ export default {
   	components: {
 	  	Heading,
 	  	Results
+	},
+	methods: {
+		fetchRepos(url){
+			this.loading = true;
+			fetch(url)
+				.then(stream => {
+					return stream.json();
+				})
+				.then(data => {
+					if(data.items){
+						this.repos = data.items;
+					} 
+					this.loading = false;
+				})
+				.catch(error => console.error(error))
+		},
+	},
+	created(){
+		this.fetchRepos("https://api.github.com/search/repositories?q=tetris");
+	},
+	data(){
+		return {
+			repos: [],
+			loading: false,
+		}
 	}
 }
 </script>
