@@ -41,13 +41,15 @@ export default {
 				.then(data => {
 					if(data.items){
 						this.repos = data.items;
+						this.totalResults = data.total_count;
 					} 
 					this.loading = false;
 				})
 				.catch(error => console.error(error))
 		},
-		searchForQuery(query){
+		searchForQuery(query, newQuery){
 			this.searchQuery = query;
+			if(newQuery) this.currentPage = 1;
 			this.fetchRepos(this.completeURL);
 		},
 		setSort(sort){
@@ -67,6 +69,7 @@ export default {
 		completeURL: function(){
 			var url = this.baseURL;
 			url += `?q=${ this.searchQuery }`
+			url += `&page=${ this.currentPage }`
 
 			if(this.searchSort != "" && this.searchSort != "bestmatch") url += `&sort=${ this.searchSort }`;
 			if(this.searchOrder != "") url += `&order=${ this.searchOrder }`;

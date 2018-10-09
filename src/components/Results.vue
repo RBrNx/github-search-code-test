@@ -26,8 +26,8 @@
 
 <script>
 import RepositoryResult from "./RepositoryResult";
-import Pagination from "./Pagination";
 import BounceLoader from "vue-spinner/src/BounceLoader";
+import Pagination from "./Pagination";
 import { TweenLite } from "gsap";
 
 export default {
@@ -101,6 +101,9 @@ export default {
                 this.resultsToUpdate = [];
             }
         },
+        currPage: function(page){
+            this.pageNumber = page;
+        }
     },
 	data(){
 		return {
@@ -132,7 +135,7 @@ export default {
             align-content: center;
             width: 100%;
         }
-
+        
         .v-spinner{
             display: inline-block;
         }

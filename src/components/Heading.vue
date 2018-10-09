@@ -27,8 +27,14 @@ export default {
 	],
 	methods: {
         searchRepositories(){
+			var newQuery = false;
+
 			if(this.query === "") return;
-			this.$emit("searchRepositories", this.query);
+			if(this.query != this.previousQuery){
+				newQuery = true;
+				this.previousQuery = this.query;
+			}
+			this.$emit("searchRepositories", this.query, newQuery);
         },
         setSort(payload){
 			this.$emit("sortChanged", payload.value);
@@ -43,6 +49,7 @@ export default {
 	data(){
 		return {
             query: "",
+            previousQuery: "",
             orderOptions: [
 				{ label: "Descending", value: "desc" },
 				{ label: "Ascending", value: "asc" },
@@ -151,4 +158,3 @@ export default {
 		}
 	}
 </style>
-`
