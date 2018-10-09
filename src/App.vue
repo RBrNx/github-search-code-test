@@ -1,7 +1,9 @@
 <template>
   	<div id="app">
 		<heading
-			@searchRepositories="searchForQuery">
+			@searchRepositories="searchForQuery"
+			@sortChanged="setSort"
+			@orderChanged="setOrder">
 		</heading>
 		<results 
 			:results="repos">
@@ -38,11 +40,22 @@ export default {
 			this.searchQuery = query;
 			this.fetchRepos(this.completeURL);
 		},
+		setSort(sort){
+			this.searchSort = sort;
+			this.fetchRepos(this.completeURL);
+		},	
+		setOrder(order){
+			this.searchOrder = order;
+			this.fetchRepos(this.completeURL);
+		},
 	},
 	computed: {
 		completeURL: function(){
 			var url = this.baseURL;
 			url += `?q=${ this.searchQuery }`
+
+			if(this.searchSort != "" && this.searchSort != "bestmatch") url += `&sort=${ this.searchSort }`;
+			if(this.searchOrder != "") url += `&order=${ this.searchOrder }`;
 
 			return url;
 		}
@@ -52,6 +65,8 @@ export default {
 			repos: [],
 			loading: false,
 			searchQuery: "",
+			searchSort: "",
+			searchOrder: "",
 			baseURL: "https://api.github.com/search/repositories",
 		}
 	}
