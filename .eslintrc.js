@@ -40,5 +40,7 @@ module.exports = {
     "space-infix-ops": 0,
     "keyword-spacing": 0,
     "template-curly-spacing": 0,
+    "eqeqeq": 0,
+    "brace-style": 0,
   }
 }
