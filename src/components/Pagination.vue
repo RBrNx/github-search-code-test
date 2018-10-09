@@ -163,6 +163,10 @@ export default {
             &:focus{
                 outline: none;
             }
+
+            @include phone{
+                margin: 0 5px;
+            }
         }
 
         .paginationNumeral{
@@ -188,6 +192,10 @@ export default {
             &.active{
                 background-color: #365084;
                 border: 1px solid #efefef;
+            }
+
+            @include phone{
+                margin: 0 5px;
             }
         }
     }

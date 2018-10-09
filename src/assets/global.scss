@@ -3,3 +3,9 @@
 
 $regularText: #586069;
 $highlightText: #1d365c;
+
+@mixin phone {
+    @media(max-width: 380px){
+        @content;
+    }
+}

@@ -71,7 +71,11 @@ export default {
 	#Heading{
 		padding: 0 22%;
 		padding-top: 20%;
-        font-family: 'Open Sans', sans-serif;
+		font-family: 'Open Sans', sans-serif;
+		
+		@include phone{
+			padding: 0 5%;
+		}
         
 		.title{
 			text-align: center;

@@ -127,6 +127,10 @@ export default {
         font-family: 'Open Sans', sans-serif;
         position: relative;
 
+        @include phone {
+            padding: 0 0;
+        }
+
         span{
             display: flex;
             align-items: center;

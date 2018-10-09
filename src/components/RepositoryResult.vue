@@ -77,11 +77,9 @@ export default {
 @import "../assets/global.scss";
 
 .result{
-    //width: 90%;
     width: 40%;
     flex: 45%;
     background: #efefef;
-    //margin: 25px auto;
     margin: 10px;
     border-radius: 10px;
     -webkit-box-shadow: 0px 2px 5px 0px rgba(0,0,0,0.25);
@@ -105,6 +103,10 @@ export default {
         display: inline-block;
         height: 100%;
         white-space: initial;
+
+        @include phone {
+            width: 75%;
+        }
 
         .repositoryTitle{
             padding: 10px;
