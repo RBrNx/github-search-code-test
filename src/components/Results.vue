@@ -1,15 +1,19 @@
 <template>
 	<div id="Results">
-        <span>Results go here</span>
+        <div class="flex">
+            <repository-result></repository-result>
+            <repository-result></repository-result>
+        </div>
 	</div>
 </template>
 
 <script>
+import RepositoryResult from "./RepositoryResult";
 
 export default {
 	name: 'Results',
 	components: {
-
+        RepositoryResult
     },
     props: [
         "results",
@@ -37,6 +41,15 @@ export default {
         padding-bottom: 20px;
         font-family: 'Open Sans', sans-serif;
         position: relative;
+
+        .flex{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-flow: row wrap;
+            align-content: center;
+            width: 100%;
+        }
 	}
 </style>
 `
