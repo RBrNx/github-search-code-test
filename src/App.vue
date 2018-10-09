@@ -7,7 +7,10 @@
 		</heading>
 		<results 
 			:results="repos"
-			:loading="loading">
+			:loading="loading"
+			:totalPages="totalPages"
+			:currPage="currentPage"
+			@pageChanged="setPage">
 		</results>
   	</div>
 </template>
@@ -15,6 +18,7 @@
 <script>
 import Heading from "./components/Heading";
 import Results from "./components/Results";
+import parseLinkHeader from "parse-link-header";
 
 export default {
   	name: 'App',
@@ -27,6 +31,11 @@ export default {
 			this.loading = true;
 			fetch(url)
 				.then(stream => {
+					var linkHeader = parseLinkHeader(stream.headers.get("Link"));
+					if(linkHeader && linkHeader.last){
+						this.totalPages = parseInt(linkHeader.last.page);
+					}
+
 					return stream.json();
 				})
 				.then(data => {
@@ -49,6 +58,10 @@ export default {
 			this.searchOrder = order;
 			this.fetchRepos(this.completeURL);
 		},
+		setPage(page){
+			this.currentPage = page;
+			this.fetchRepos(this.completeURL);
+		}
 	},
 	computed: {
 		completeURL: function(){
@@ -69,6 +82,9 @@ export default {
 			searchSort: "",
 			searchOrder: "",
 			baseURL: "https://api.github.com/search/repositories",
+			currentPage: 1,
+			totalPages: 0,
+			totalResults: 0
 		}
 	}
 }

@@ -1,5 +1,11 @@
 <template>
 	<div id="Results">
+        <pagination
+            :totalPages="totalPages"
+            :currentPage="pageNumber"
+            @pageChanged="onPageChange"
+            v-show="showPagination"
+        ></pagination>
         <bounce-loader :loading="loading" color="#4d84d8"></bounce-loader>
         <transition-group
             @before-enter="beforeEnter"
@@ -20,6 +26,7 @@
 
 <script>
 import RepositoryResult from "./RepositoryResult";
+import Pagination from "./Pagination";
 import BounceLoader from "vue-spinner/src/BounceLoader";
 import { TweenLite } from "gsap";
 
@@ -27,13 +34,20 @@ export default {
 	name: 'Results',
 	components: {
         RepositoryResult,
-        BounceLoader
+        BounceLoader,
+        Pagination
     },
     props: [
         "results",
-        "loading"
+        "loading",
+        "totalPages",
+        "currPage"
     ],
     methods: {
+        onPageChange(page){
+            this.$emit("pageChanged", page);
+            this.pageNumber = page;
+        },
         beforeEnter(el){
             el.style.opacity = 0;
             el.style.left = '50%';
@@ -93,6 +107,8 @@ export default {
             animating: false,
             resultsToUpdate: [],
             searchResults: [],
+            pageNumber: this.currPage,
+            showPagination: false,
 		}
 	}
 }
