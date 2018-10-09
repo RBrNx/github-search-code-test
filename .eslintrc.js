@@ -39,5 +39,6 @@ module.exports = {
     "no-multiple-empty-lines": 0,
     "space-infix-ops": 0,
     "keyword-spacing": 0,
+    "template-curly-spacing": 0,
   }
 }
