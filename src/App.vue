@@ -6,7 +6,8 @@
 			@orderChanged="setOrder">
 		</heading>
 		<results 
-			:results="repos">
+			:results="repos"
+			:loading="loading">
 		</results>
   	</div>
 </template>
