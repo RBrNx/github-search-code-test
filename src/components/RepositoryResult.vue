@@ -1,25 +1,25 @@
 <template>
-    <a class="result" href="https://github.com/chvin/react-tetris" target="_blank">
+    <a class="result" :href="repoLink" target="_blank">
         <div class="mainInfo">
             <div class="repositoryTitle">
             <span class="avatar">
-                <img src="https://avatars2.githubusercontent.com/u/5383506?v=4">
+                <img :src="avatarLink">
             </span>
-            <a class="ownerName" href="https://github.com/chvin" target="_blank">chvin</a> /
-            <span class="repoName">react-tetris</span>
+            <a class="ownerName" :href="ownerLink" target="_blank">{{ ownerName }}</a> /
+            <span class="repoName">{{ repoName }}</span>
         </div>
-        <div class="repositoryDesc">Use React, Redux, Immutable to code Tetris. 🎮</div>
-        <div class="lastUpdated">Updated on</div>
+        <div class="repositoryDesc">{{ repoDesc }}</div>
+        <div class="lastUpdated">Updated on {{ lastUpdated }}</div>
         </div>
         <div class="sideInfo">
-            <span class="language">JavaScript</span>
+            <span class="language">{{ language }}</span>
             <span class="stars">
                 <font-awesome-icon icon="star"></font-awesome-icon>
-                200
+                {{ starCount }}
             </span>
             <span class="forks">
                 <font-awesome-icon icon="code-branch"></font-awesome-icon>
-                100
+                {{ forkCount }}
             </span>
         </div>
     </a>
