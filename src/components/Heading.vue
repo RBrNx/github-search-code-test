@@ -3,7 +3,7 @@
 		<h2 class="title">Github Repository Search</h2>
 		<h4 class="subtitle">Start typing to search for a Github Repository!</h4>
 		<div class="searchContainer">
-			<input type="text" id="search" placeholder="What repository are you looking for..." v-model="query">
+			<input type="text" id="search" placeholder="What repository are you looking for..." v-model="query" @keyup.enter="searchRepositories">
 		</div>
 	</div>
 </template>
@@ -19,7 +19,12 @@ export default {
 
 	],
 	methods: {
+        searchRepositories(){
+			var newQuery = false;
 
+			if(this.query === "") return;
+			this.$emit("searchRepositories", this.query);
+		},
 	},
 	computed: {
 

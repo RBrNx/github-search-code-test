@@ -1,7 +1,11 @@
 <template>
   	<div id="app">
-		  <heading></heading>
-		  <results :results="repos"></results>
+		<heading
+			@searchRepositories="searchForQuery">
+		</heading>
+		<results 
+			:results="repos">
+		</results>
   	</div>
 </template>
 
@@ -30,14 +34,25 @@ export default {
 				})
 				.catch(error => console.error(error))
 		},
+		searchForQuery(query){
+			this.searchQuery = query;
+			this.fetchRepos(this.completeURL);
+		},
 	},
-	created(){
-		this.fetchRepos("https://api.github.com/search/repositories?q=tetris");
+	computed: {
+		completeURL: function(){
+			var url = this.baseURL;
+			url += `?q=${ this.searchQuery }`
+
+			return url;
+		}
 	},
 	data(){
 		return {
 			repos: [],
 			loading: false,
+			searchQuery: "",
+			baseURL: "https://api.github.com/search/repositories",
 		}
 	}
 }
