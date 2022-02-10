@@ -17,7 +17,7 @@
     "@fortawesome/vue-fontawesome": "^0.1.1",
     "gsap": "^2.0.2",
     "moment": "^2.22.2",
-    "node-sass": "^4.9.3",
+    "node-sass": "^7.0.0",
     "parse-link-header": "^1.0.1",
     "sass-loader": "^7.1.0",
     "vue": "^2.5.2",
